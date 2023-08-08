@@ -1,0 +1,20 @@
+{
+  "name": "a.betaev.pub",
+  "scripts": {
+    "dev": "bun run init && vite",
+    "deploy": "echo 'not implemented' 1>&2 && exit 1",
+    "build": "bun run init && vite build",
+    "init": "[ -f .i ] || (bun i && touch .i)"
+  },
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest",
+    "vite": "^4.5.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "solid-js": "^1.8.5"
+  }
+}

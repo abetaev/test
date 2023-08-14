@@ -1,0 +1,18 @@
+---
+import Redirect from "~/layouts/Redirect.astro";
+import Article from "./Article.astro";
+import Layout from "~/layouts/Default.astro";
+
+type Props = {
+  title: string
+  slugs: string[]
+};
+const { slugs, title } = Astro.props;
+---
+
+{slugs.length === 1 ?
+<Redirect path={`/articles/${slugs[0]}/`}/> :
+<Layout title={title}>
+  {slugs.map((slug) => <Article {slug} preview />)}
+</Layout>}
+

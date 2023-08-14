@@ -1,0 +1,56 @@
+---
+---
+
+<button class:list={["icon", "theme-toggle"]}></button>
+
+<style>
+  button.theme-toggle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 1em;
+    width: min-content;
+  }
+</style>
+
+<script>
+  const documentTheme = document.createAttribute("data-theme");
+  document.body.parentElement?.attributes.setNamedItem(documentTheme);
+  const matcher = window.matchMedia("(prefers-color-scheme: dark)");
+  documentTheme.value = matcher.matches ? "dark" : "light";
+  const toggles = document.querySelectorAll(".theme-toggle");
+  
+  const update = () =>
+    toggles.forEach((toggle) => {
+      if (!(toggle instanceof HTMLButtonElement)) throw "something's wrong";
+      toggle.innerHTML = `${documentTheme.value}_mode`;
+    });
+
+  function getPreferredColorScheme() {
+    return matcher.matches ? "dark" : "light";
+  }
+
+  matcher.addEventListener("change", ({ matches }) => {
+    document.body.removeAttribute("data-theme")
+    const current = document.body.getAttribute("data-theme")
+    const preferred = getPreferredColorScheme()
+    if (current === preferred) {
+    } else {
+      document.body.setAttribute("data-theme", preferred)
+    }
+    if (matches) {
+      documentTheme.value = "dark";
+    } else {
+      documentTheme.value = "light";
+    }
+    update();
+  });
+  toggles.forEach((button) => {
+    if (!(button instanceof HTMLButtonElement)) throw "something's wrong";
+    button.onclick = () => {
+      documentTheme.value = documentTheme.value === "dark" ? "light" : "dark";
+      update();
+    };
+  });
+  update();
+</script>

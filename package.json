@@ -1,15 +1,46 @@
 {
-  "name": "",
+  "name": "my-website",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "dev": "npm run init && concurrently --restart-tries -1 --restart-after 5000 -n 'astro,gqlcg' 'astro dev' 'graphql-codegen --watch'",
+    "build": "npm run init && graphql-codegen && astro build",
+    "preview": "npm run init && graphql-codegen && astro preview",
+    "astro": "astro",
+    "init": "[ -f .i ] || npm i && touch .i ; ./update-github-schema.sh",
+    "cleanup": "rm -rf node_modules dist .astro .i"
   },
   "dependencies": {
-    "astro": "^2.10.1"
+    "@astrojs/mdx": "^1.0.0",
+    "@astrojs/prism": "^3.0.0",
+    "@astrojs/solid-js": "^3.0.0",
+    "@hpcc-js/wasm": "^2.13.1",
+    "@picocss/pico": "^1.5.10",
+    "@urql/core": "^4.1.1",
+    "astro": "^3.0.7",
+    "bob-wasm": "^1.0.1",
+    "glob": "^10.3.3",
+    "luxon": "^3.4.2",
+    "prismjs": "^1.29.0",
+    "rehype-parse": "^8.0.5",
+    "remark": "^14.0.3",
+    "remark-frontmatter": "^4.0.1",
+    "solid-js": "^1.7.11",
+    "svgo": "^3.0.2",
+    "uuid": "^9.0.0",
+    "yaml": "^2.3.1"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@parcel/watcher": "^2.2.0",
+    "@types/luxon": "^3.3.2",
+    "@types/mdast": "^4.0.0",
+    "@types/prismjs": "^1.26.0",
+    "@types/uuid": "^9.0.2",
+    "@types/watch": "^1.0.3",
+    "concurrently": "^8.2.0",
+    "dotenv": "^16.3.1",
+    "unified": "^11.0.2"
   }
 }

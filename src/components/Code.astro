@@ -1,0 +1,51 @@
+---
+import { readFileSync } from "fs";
+import Prism from "prismjs";
+import loadLanguages from "prismjs/components/";
+
+type Props = {
+  file: string;
+  lang: string;
+};
+
+const { file, lang } = Astro.props;
+
+loadLanguages([Astro.props.lang]);
+const grammar = Prism.languages[lang];
+if (!grammar) throw `no grammar for language ${lang}`;
+const code = readFileSync(file).toString();
+const highlightedCode = Prism.highlight(code, grammar, lang);
+---
+
+<pre
+  class={`language-${lang}`}>
+  <code class={`language-${lang}`} set:html={highlightedCode} />
+</pre>
+
+<script>
+  import codeLightCSS from "prismjs/themes/prism-solarizedlight.css?inline";
+  import codeDarkCSS from "prismjs/themes/prism-tomorrow.css?inline";
+  const darkStyleElement = document.createElement("style");
+  darkStyleElement.innerHTML = codeDarkCSS;
+  document.head.append(darkStyleElement);
+
+  const lightStyleElement = document.createElement("style");
+  lightStyleElement.innerHTML = codeLightCSS;
+  document.head.append(lightStyleElement);
+
+  const matcher = window.matchMedia("(prefers-color-scheme: dark)");
+
+  async function update() {
+    if (matcher.matches) {
+      darkStyleElement.disabled = false;
+      lightStyleElement.disabled = true;
+    } else {
+      darkStyleElement.disabled = true;
+      lightStyleElement.disabled = false;
+    }
+  }
+
+  matcher.addEventListener("change", update);
+
+  update();
+</script>

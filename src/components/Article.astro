@@ -1,0 +1,43 @@
+---
+import { getEntry } from "astro:content";
+import { DateTime } from "luxon";
+
+interface Props {
+  slug: string;
+  preview?: boolean | undefined;
+}
+
+const { slug, preview } = Astro.props;
+
+const article = await (preview
+  ? getEntry("previews", slug)
+  : getEntry("articles", slug));
+if (!article)
+  throw `unable to locate ${preview ? "preview" : "article"} ${slug}`;
+const { title } = article.data;
+const { Content } = await article.render();
+const created = DateTime.fromJSDate(article.data.created).toLocaleString();
+const published = article.data.published ? DateTime.fromJSDate(article.data.published).toLocaleString() : "";
+const subtitle = `created: ${created}, published: ${published}`;
+---
+
+<article>
+  <header>
+    <hgroup>
+      <h1>{title}</h1>
+      <h2>{subtitle}</h2>
+    </hgroup>
+  </header>
+  <main>
+    <Content />
+  </main>
+  {
+    preview && (
+      <footer>
+        <a href={`/articles/${slug}`} aria-role="button">
+          read on...
+        </a>
+      </footer>
+    )
+  }
+</article>

@@ -1,0 +1,58 @@
+---
+type Props = { open: boolean };
+const { open } = Astro.props;
+---
+
+<dialog id="splash" open class:list={{ hidden: !open }} aria-busy="true">
+</dialog>
+<style>
+  #splash.hidden {
+    opacity: 0;
+    animation: hide 0.66s;
+    visibility: hidden;
+  }
+
+  #splash.visible {
+    opacity: 1;
+    animation: show 0.66s;
+    visibility: visible;
+  }
+
+  @keyframes show {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes hide {
+    0% {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    100% {
+      visibility: visible;
+      opacity: 0;
+    }
+  }
+</style>
+<script>
+  const splash = document.getElementById("splash") as HTMLDialogElement;
+  if (splash === null) throw `something's wrong`;
+  const currentPageHref = `${window.location.origin}${window.location.pathname}${window.location.search}#`
+  document.querySelectorAll("a").forEach((a) => {
+    if (!a.href.startsWith(currentPageHref))
+      a.onclick = async (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        splash.open = true;
+        splash.classList.remove("hidden");
+        splash.classList.add("visible");
+        await new Promise((resolve) => setTimeout(resolve, 666));
+        location.assign(a.href);
+      }
+  });
+</script>

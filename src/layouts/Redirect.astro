@@ -1,0 +1,18 @@
+---
+import Head from "~/components/Head.astro";
+import Splash from "~/components/Splash.astro";
+type Props = {
+  path: string;
+};
+const { path } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <Head title="loading...">
+    <meta http-equiv="refresh" content={`1;URL=${path}`} />
+  </Head>
+  <body>
+    <Splash open={true} />
+  </body>
+</html>

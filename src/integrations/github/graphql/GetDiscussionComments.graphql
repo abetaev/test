@@ -1,0 +1,29 @@
+query GetDiscussionComments(
+  $discussionId: ID!
+  $batchSize: Int!
+  $iterator: String
+) {
+  node(id: $discussionId) {
+    __typename
+    ... on Discussion {
+      comments(first: $batchSize, after: $iterator) {
+        edges {
+          node {
+            id
+            body
+            author {
+              login
+              ... on User {
+                name
+              }
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}

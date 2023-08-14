@@ -1,0 +1,83 @@
+---
+import type { MarkdownHeading } from "astro";
+
+type Node = {
+  parent?: Node | undefined;
+  children: Node[];
+  heading: MarkdownHeading;
+};
+
+type Props = { headings: MarkdownHeading[] } | { hierarchy: Node };
+
+function createHierarchy(headings: MarkdownHeading[]): Node {
+  let node: Node = {
+    children: [],
+    heading: { depth: 0, slug: "", text: "" },
+  };
+  for (const heading of headings) {
+    const child: Node = {
+      parent: node,
+      children: [],
+      heading: heading,
+    };
+    switch (heading.depth - node.heading.depth) {
+      case 1:
+        child.parent = node;
+        node.children.push(child);
+        node = child;
+        break;
+      // @ts-expect-error intentional fallthrough
+      default:
+        if (heading.depth > node.heading.depth)
+          throw `wrong heading hierarchy at '${heading.text}'`;
+        while (node.heading.depth !== heading.depth) {
+          if (!node.parent)
+            throw `wrong heading hierarchy at '${heading.text}'`;
+          node = node.parent;
+        }
+      case 0:
+        if (!node.parent) throw `wrong heading hierarchy at '${heading.text}'`;
+        child.parent = node.parent;
+        node.parent.children.push(child);
+        node = child;
+        break;
+    }
+  }
+  while (node.parent) node = node.parent;
+  function unlink(root: Node) {
+    root.parent = undefined;
+    root.children.forEach(unlink);
+  }
+  unlink(node);
+  return node;
+}
+
+const hierarchy =
+  "hierarchy" in Astro.props
+    ? Astro.props.hierarchy
+    : createHierarchy(Astro.props.headings);
+---
+
+<ul>
+  {
+    hierarchy.children.map((node) => (
+      <li>
+        <a href={`#${node.heading.slug}`}>{node.heading.text}</a>
+        {node.children.length ? <Astro.self hierarchy={node} /> : null}
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  ul {
+    width: max-content;
+    height: 100%;
+    overflow: auto;
+  }
+
+  ul li {
+    padding: 0;
+    margin: 0;
+  }
+</style>

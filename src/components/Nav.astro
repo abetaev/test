@@ -1,0 +1,24 @@
+---
+import github from '~/config/github'
+const home = new URL(Astro.request.url).pathname === "/";
+---
+
+<nav>
+  <ul></ul>
+  <ul>
+    {
+      home ? null : (
+        <li>
+          <a role="button" href="/" data-icon-gmso="home" />
+        </li>
+      )
+    }
+    <li>
+      <a role="button" href={`https://github.com/${github.user}/${github.repo}`} data-icon-name="github-dark"/>
+    </li>
+    <li>
+      <a role="button" href="https://bandcamp.com/abetaev" data-icon-name="bandcamp-dark"/>
+    </li>
+  </ul>
+  <ul></ul>
+</nav>

@@ -1,0 +1,18 @@
+mutation CreateDiscussion(
+  $repositoryId: ID!
+  $categoryId: ID!
+  $title: String!
+) {
+  createDiscussion(
+    input: {
+      repositoryId: $repositoryId
+      title: $title
+      body: "blank"
+      categoryId: $categoryId
+    }
+  ) {
+    discussion {
+      id
+    }
+  }
+}

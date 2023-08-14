@@ -1,0 +1,46 @@
+---
+import { getEntry } from "astro:content";
+import Article from "~/components/Article.astro";
+import Layout from "~/layouts/Default.astro";
+import articles from "~/config/articles";
+import Discussion from "~/components/Discussion";
+import githubConfig from "~/config/github";
+import createGithubClient from "~/integrations/github";
+import TOC from "~/components/TOC.astro";
+import Sidebar from "~/components/Sidebar.astro";
+
+export async function getStaticPaths() {
+  return articles.map(({ slug }) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+
+if (!slug) throw `slug is not provided`;
+
+const article = await getEntry("articles", slug);
+if (!article) throw `unable to find article ${slug}`;
+const { headings } = await article.render();
+
+const githubClient = createGithubClient(githubConfig);
+if (!article.data.id)
+  throw `article ${slug} id is not set, check content integration`;
+const discussionId = await githubClient.getOrCreateDiscussionId(
+  article.data.id
+);
+---
+
+<Layout title={`${article.data.title}`}>
+  <Sidebar icon="toc">
+    <TOC {headings} />
+  </Sidebar>
+  <Article slug={slug} />
+  <Discussion
+    location={`/articles/${slug}/`}
+    clientId={import.meta.env["GITHUB_OAUTH_CLIENT_ID"]}
+    authURL={import.meta.env["GITHUB_OAUTH_URL"]}
+    user={githubConfig.user}
+    repo={githubConfig.repo}
+    id={discussionId}
+    client:only
+  />
+</Layout>

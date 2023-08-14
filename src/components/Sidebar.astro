@@ -1,0 +1,95 @@
+---
+type Props = {
+  icon: string;
+};
+const { icon } = Astro.props;
+---
+
+<aside>
+  <slot />
+  <button id="sidebar-toggle" data-icon-gmso={icon}></button>
+</aside>
+
+<script define:vars={{ icon }}>
+const toggles = document.querySelectorAll("#sidebar-toggle");
+toggles.forEach((button) => {
+  if (!(button instanceof HTMLButtonElement)) throw "wrong button";
+  const parent = button.parentElement;
+  if (!parent) throw "no parent";
+  button.onclick = () => {
+    if (parent.classList.contains("visible")) {
+      parent.classList.remove("visible");
+      parent.classList.add("hidden");
+      button.dataset.iconGmso = icon;
+    } else {
+      parent.classList.remove("hidden");
+      parent.classList.add("visible");
+      button.dataset.iconGmso = "arrow_forward_ios";
+    }
+  };
+});
+</script>
+
+<style>
+  aside {
+    position: fixed;
+    display: block;
+    right: 0;
+    top: 0px;
+    bottom: 0px;
+    height: 100vh;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    overflow: visible;
+    background-color: var(--card-background-color);
+    transform: translateX(100%);
+    z-index: 1;
+  }
+
+  aside.visible {
+    animation: slide-in 1s;
+    transform: translateX(0);
+    box-shadow: -15px 0em 60px var(--secondary);
+  }
+
+  aside.hidden {
+    animation: slide-out 1s;
+    box-shadow: 0 0 0 var(--secondary);
+  }
+
+  aside > button {
+    position: absolute;
+    width: min-content;
+    height: min-content;
+    bottom: 0;
+    transform: translateX(-100%);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 25%;
+    border-bottom-left-radius: 25%;
+  }
+
+  @keyframes slide-in {
+    0% {
+      transform: translateX(100%);
+      box-shadow: 0 0 0 var(--secondary);
+    }
+
+    100% {
+      transform: translateX(0);
+      box-shadow: -15px 0 60px var(--secondary);
+    }
+  }
+
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0);
+      box-shadow: -15px 0 60px var(--secondary);
+    }
+
+    100% {
+      transform: translateX(100%);
+      box-shadow: 0 0 0 #000;
+    }
+  }
+</style>

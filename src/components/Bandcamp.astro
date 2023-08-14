@@ -1,0 +1,63 @@
+---
+type Props = {
+  album: string;
+  artwork?: "none" | "small";
+  minimal?: true | undefined;
+  size: "large" | "small";
+  transparent?: false | undefined;
+  autoplay?: true | undefined;
+} & ({ track: string } | { tracklist?: false });
+const props = Astro.props;
+
+const BASE_URL = 'https://bandcamp.com/EmbeddedPlayer'
+
+const query = new URLSearchParams({ album: props.album })
+if (props.artwork) query.append("artwork", props.artwork)
+if ("track" in props) query.append("track", props.track)
+else if (!props.tracklist) query.append("tracklist", "false")
+if (props.size) query.append("size", props.size)
+query.append("transparent", `${!props.transparent}`)
+// TODO: dynamically set colors
+query.append("linkcol", "FFFFFF")
+query.append("bgcol", "333333")
+const url = `${BASE_URL}/${query.toString().replaceAll('&', '/')}`
+
+---
+
+{
+  import.meta.env["BANDCAMP_DISABLED"] === "true" ? (
+    <div
+      style={{
+        display: "flex",
+        height:
+          props.size === "large" ? (props.artwork ? "120px" : "350px") : "42px",
+        width:
+          props.size === "large"
+            ? props.artwork
+              ? "300px"
+              : "350px"
+            : "100px)",
+        backgroundColor: "var(--primary-focus)",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      badncamp stub
+    </div>
+  ) : (
+    <iframe
+      class="bandcamp"
+      src={url}
+      style={{
+        height:
+          props.size === "large" ? (props.artwork ? "120px" : "350px") : "42px",
+        width:
+          props.size === "large"
+            ? props.artwork
+              ? "max-content"
+              : "350px"
+            : "min-content",
+      }}
+    />
+  )
+}

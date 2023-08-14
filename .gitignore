@@ -22,3 +22,11 @@ pnpm-debug.log*
 
 # IDEs
 /.vscode/
+
+# * volatile sources
+# . cached sources
+src/integrations/github/graphql/schema.json
+/.i
+# . generated sources
+src/integrations/graphql/*.ts
+src/content/previews/**/*

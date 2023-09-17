@@ -8,6 +8,7 @@ type Props = {
   authURL: string
   repo: string
   user: string
+  slug: string
   id: string
 }
 export default (props: Props) => {

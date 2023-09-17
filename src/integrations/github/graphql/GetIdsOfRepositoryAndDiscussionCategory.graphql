@@ -1,14 +1,12 @@
 query GetIdsOfRepositoryAndDiscussionCategory(
   $user: String!
   $repo: String!
+  $slug: String!
 ) {
   repository(owner: $user, name: $repo) {
     id
-    # TODO: parameterize
-    discussionCategories(first: 1) {
-      nodes {
-        id
-      }
+    discussionCategory(slug: $slug) {
+      id
     }
   }
 }

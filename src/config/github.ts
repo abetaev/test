@@ -11,5 +11,6 @@ if (!groups.repo) throw `github: unable to determine repo`
 export default {
   user: groups.user,
   repo: groups.repo,
-  auth: `token ${import.meta.env["SECRET_GITHUB_TOKEN"]}`
+  auth: `token ${import.meta.env["GITHUB_TOKEN"]}`,
+  slug: import.meta.env.GITHUB_DISCUSSION_CATEGORY
 }

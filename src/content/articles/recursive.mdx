@@ -502,7 +502,7 @@ Prerequisites:
   > **ATTENTION:** One may fail a part, but ought to chamfer it.
   > Same with security: don't neglect CORS, set exact URLs in policy headers.
 
-<Code lang="go" file="auth/github-oauth2.gcf.go" />
+<Code lang="go" file="auth/github-oauth2-handler.go" />
 
 Why go? - It's the fastest available.
 
@@ -510,7 +510,7 @@ Deployment script:
 
 <Code
   lang="sh"
-  file="auth/deploy.sh"
+  file="scripts/deploy-auth-cloud-function.sh"
 />
 </details>
 
@@ -545,7 +545,7 @@ Inception: [Github's GraphQL Explorer](https://docs.github.com/en/graphql/overvi
 
 <details>
   <summary>Schema caching</summary>
-  <Code lang="sh" file="update-github-schema.sh" />
+  <Code lang="sh" file="scripts/download-github-graphql-schema.sh" />
 </details>
 
 

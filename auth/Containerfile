@@ -1,0 +1,14 @@
+FROM docker.io/golang:alpine AS build
+
+WORKDIR /build
+ADD . /build
+
+go build
+
+FROM alpine
+
+COPY --from=build /build/auth
+
+/entrypoint
+
+ENTRYPOINT /entrypoint

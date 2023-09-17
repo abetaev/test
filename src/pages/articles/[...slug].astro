@@ -40,6 +40,7 @@ const discussionId = await githubClient.getOrCreateDiscussionId(
     authURL={import.meta.env["GITHUB_OAUTH_URL"]}
     user={githubConfig.user}
     repo={githubConfig.repo}
+    slug={import.meta.env["GITHUB_DISCUSSION_CATEGORY"]}
     id={discussionId}
     client:only
   />

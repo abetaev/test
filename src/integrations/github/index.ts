@@ -4,19 +4,20 @@ import {
   GetDiscussionsDocument as GetDiscussions,
   GetDiscussionCommentsDocument as GetDiscussionComments,
   GetIdsOfRepositoryAndDiscussionCategoryDocument as GetIdsOfRepositoryAndDiscussionCategory,
-  CreateDiscussionDocument as CreateDiscussion,
+  CreateDiscussionDocument as CreateDiscussion
+} from '~/integrations/graphql/graphql';
+import type {
   Discussion,
   Comment,
   DiscussionComment,
   GetDiscussionsQueryVariables
 } from '~/integrations/graphql/graphql';
 
-
-
 type Props = {
   user: string
   repo: string
   auth: string
+  slug: string
 }
 export interface GithubClient {
   getDiscussionId(title: string): Promise<string>
@@ -61,11 +62,12 @@ export default (props: Props): GithubClient => {
   }
 
   async function getIdsOfRepositoryAndDiscussionCategory() {
+    console.log({props})
     const result = await client.query(GetIdsOfRepositoryAndDiscussionCategory, props)
     const repositoryId = result?.data?.repository?.id
-    if (!repositoryId) throw `repository not found for '${props.repo}/${props.user}'`
-    const categories = result?.data?.repository?.discussionCategories?.nodes ?? []
-    const categoryId = categories[0]?.id
+    console.log({result})
+    if (!repositoryId) throw `repository not found for '${props.user}/${props.repo}'`
+    const categoryId = result?.data?.repository?.discussionCategory?.id
     if (!categoryId) throw `discussion category not found for '${props.repo}/${props.user}'`
     return { repositoryId, categoryId }
   }

@@ -3,11 +3,11 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "npm run init && concurrently --restart-tries -1 --restart-after 5000 -n 'astro,gqlcg' 'astro dev' 'graphql-codegen --watch'",
+    "dev": "npm run init && concurrently --restart-tries -1 --restart-after 5000 -n 'astro,gqlcg,env' 'astro dev' 'graphql-codegen --watch' 'scripts/development-environment.sh'",
     "build": "npm run init && graphql-codegen && astro build",
     "preview": "npm run init && graphql-codegen && astro preview",
     "astro": "astro",
-    "init": "[ -f .i ] || npm i && touch .i ; ./update-github-schema.sh",
+    "init": "[ -f .i ] || npm i && touch .i ; ./scripts/download-github-graphql-schema.sh ; git submodule init && git submodule update",
     "cleanup": "rm -rf node_modules dist .astro .i"
   },
   "dependencies": {

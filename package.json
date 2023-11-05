@@ -1,15 +1,16 @@
 {
   "name": "a.betaev.pub",
   "scripts": {
-    "dev": "bun run init && vite",
+    "dev": "bun run init && concurrently --restart-after 5000 vite -n 'vite,gqlcg,auth' 'vite' 'graphql-codegen --watch' 'scripts/dev-env.sh'",
     "deploy": "echo 'not implemented' 1>&2 && exit 1",
     "build": "bun run init && vite build",
-    "clean": "git clean -fdx",
-    "init": "[ -f .i ] || (bun i && touch .i)"
+    "cleanup": "git clean -fdx",
+    "init": "[ -f .i ] || (bun i && scripts/download-github-graphql.schema.sh && touch .i)"
   },
   "type": "module",
   "devDependencies": {
     "bun-types": "latest",
+    "concurrently": "^8.2.2",
     "vite": "^4.5.0"
   },
   "peerDependencies": {

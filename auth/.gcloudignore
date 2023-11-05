@@ -1,0 +1,5 @@
+/cmd/
+/.gitignore
+/.gcloudignore
+/Containerfile
+/auth

@@ -1,0 +1,12 @@
+FROM docker.io/golang:alpine AS build
+
+WORKDIR /build
+ADD . /build
+
+RUN go build -C cmd
+
+FROM docker.io/alpine
+
+COPY --from=build /build/cmd/cmd /
+
+ENTRYPOINT /cmd

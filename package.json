@@ -4,6 +4,7 @@
     "dev": "bun run init && vite",
     "deploy": "echo 'not implemented' 1>&2 && exit 1",
     "build": "bun run init && vite build",
+    "clean": "git clean -fdx",
     "init": "[ -f .i ] || (bun i && touch .i)"
   },
   "type": "module",

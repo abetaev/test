@@ -1,7 +1,7 @@
 {
   "name": "a.betaev.pub",
   "scripts": {
-    "dev": "bun run init && concurrently --restart-after 5000 vite -n 'vite,gqlcg,auth' 'vite' 'graphql-codegen --watch' 'scripts/dev-env.sh'",
+    "dev": "bun run init && concurrently --restart-after 5000 -n 'vite,gqlcg,auth' 'vite' 'graphql-codegen --watch' 'scripts/dev-env.sh'",
     "deploy": "echo 'not implemented' 1>&2 && exit 1",
     "build": "bun run init && vite build",
     "cleanup": "git clean -fdx",
@@ -9,14 +9,21 @@
   },
   "type": "module",
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typed-document-node": "^5.0.1",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
     "bun-types": "latest",
     "concurrently": "^8.2.2",
-    "vite": "^4.5.0"
+    "vite": "^4.5.0",
+    "vite-plugin-solid": "^2.7.2"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "@parcel/watcher": "^2.3.0"
   },
   "dependencies": {
+    "graphql-request": "^6.1.0",
     "solid-js": "^1.8.5"
   }
 }

@@ -1,2 +1,5 @@
 /node_modules/
 /.i
+
+/app/integrations/github/graphql/schema.json
+/app/integrations/graphql.ts

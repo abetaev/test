@@ -1,0 +1,22 @@
+query GetDiscussions($user: String!, $repo: String!, $iterator: String) {
+  repository(owner: $user, name: $repo) {
+    discussions(first: 10, after: $iterator) {
+      edges {
+        node {
+          id
+          author {
+            login,
+            avatarUrl,
+            url
+          }
+          title
+          body
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}

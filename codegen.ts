@@ -1,16 +1,17 @@
 import type { CodegenConfig } from '@graphql-codegen/cli'
 
 const config: CodegenConfig = {
-  schema: './src/integrations/github/graphql/schema.json',
-  documents: ['src/integrations/github/graphql/*.graphql'],
-  ignoreNoDocuments: true, // for better experience with the watcher
+  schema: './app/integrations/github/graphql/schema.json',
+  documents: ['app/integrations/github/graphql/*.graphql'],
+  ignoreNoDocuments: true,
   generates: {
-    './src/integrations/graphql/': {
-      preset: 'client',
+    './app/integrations/graphql.ts': {
       config: {
         useTypeImports: true,
       },
-      plugins: ["typescript", "typescript-operations"]
+      plugins: ["typescript", "typescript-operations", "typed-document-node"]
     },
   },
 }
+
+export default config

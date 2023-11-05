@@ -3,7 +3,7 @@
 cd "$(dirname $0)/.."
 . ./.env
 
-SCHEMA_FILE="src/integrations/github/graphql/schema.json"
+SCHEMA_FILE="app/integrations/github/graphql/schema.json"
 
 if [ -f $SCHEMA_FILE ]; then
   exit 0

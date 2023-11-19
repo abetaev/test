@@ -2,6 +2,7 @@
 
 ## roadmap
 
+- [ ] authenticate agains github app
 - [ ] articles ("announcement" categories)
   - [ ] rendering markdown
     - [ ] markdown tables to graphics
@@ -12,10 +13,19 @@
 - [ ] configuration
   - [ ] github user/repo
   - [ ] managing config through git
-
+- [ ] deployment
+  - [ ] pre-rendering on deployment (to avoid necessity of authentication)
 
 
 ## development
+
+### requirements
+
+* bun >=1.0
+* container runtime, one of:
+  - docker compose plugin >=2.22 - **supports hot reload**
+  - podman compose
+
 
 ```bash
 # develop

@@ -1,5 +1,5 @@
 import { request } from 'graphql-request'
-import { Discussion, GetDiscussionsDocument } from '~/integrations/graphql'
+import { Discussion, GetDiscussionsDocument } from '../graphql'
 
 type Repository = {
   discussions(): Promise<Discussion[]>
@@ -7,8 +7,8 @@ type Repository = {
 
 const url = "https://api.github.com/graphql"
 
-export default (user: string, repo: string): Repository => {
-
+export default (user: string, repo: string, token: string): Repository => {
+  
   return {
     discussions: async () => {
       const response = await request({
@@ -17,6 +17,9 @@ export default (user: string, repo: string): Repository => {
         variables: {
           user,
           repo,
+        },
+        requestHeaders: {
+          "Authorization": token
         }
       })
       return response.repository?.discussions?.edges?.map(edge => edge?.node as Discussion) ?? []

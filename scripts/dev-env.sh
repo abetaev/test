@@ -1,9 +1,11 @@
 #!/bin/sh -e
 
-if which podman-compose; then
+if which docker && docker compose 2>&1 > /dev/null; then
+  # use docker compose plugin
+  compose="docker compose"
+elif which podman-compose; then
+  # use podman-compose
   compose=podman-compose
-elif which docker-compose; then
-  compose=docker-compose
 fi > /dev/null
 
 if [ -z "$compose" ]; then
@@ -15,8 +17,9 @@ cd "$(dirname $0)/.."
 
 down() {
   $compose down
+  echo
 }
 
 trap down INT
 $compose build
-$compose up
+$compose watch

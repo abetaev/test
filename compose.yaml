@@ -1,7 +1,15 @@
 version: "3.8"
 services:
   auth:
-    build: auth
+    build: 
+      context: auth
+      dockerfile: Containerfile
     env_file: .env.development
     ports:
-    - 4320
+    - '4320:4320'
+    develop:
+      watch:
+        - action: rebuild
+          path: auth/github-oauth2-handler.go
+        - action: rebuild
+          path: auth/cmd

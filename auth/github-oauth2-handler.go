@@ -8,19 +8,19 @@ import (
 	"strings"
 )
 
-const GITHUB_OAUTH_TOKEN_URL = "https://github.com/login/oauth/access_token"
+const GITHUB_OAUTH_ACCESS_TOKEN_URL = "https://github.com/login/oauth/access_token"
 
 // given authorization code request access token
 func Authenticate(w http.ResponseWriter, r *http.Request) {
 
 	// read configuration
 
-	clientSecret, set := os.LookupEnv("GITHUB_OAUTH_CLIENT_SECRET")
+	clientSecret, set := os.LookupEnv("GITHUB_APP_CLIENT_SECRET")
 	if !set {
 		panic("env: CLIENT_SECRET not set")
 	}
 
-	clientId, set := os.LookupEnv("GITHUB_OAUTH_CLIENT_ID")
+	clientId, set := os.LookupEnv("GITHUB_APP_CLIENT_ID")
 	if !set {
 		panic("env: CLIENT_ID not set")
 	}
@@ -44,7 +44,7 @@ func Authenticate(w http.ResponseWriter, r *http.Request) {
 		"code":          code,
 	}
 	resp, err := http.Post(
-		GITHUB_OAUTH_TOKEN_URL,
+		GITHUB_OAUTH_ACCESS_TOKEN_URL,
 		"application/x-www-form-urlencoded",
 		strings.NewReader(urlParams.Encode()),
 	)

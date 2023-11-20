@@ -11,6 +11,9 @@ query GetDiscussions($user: String!, $repo: String!, $iterator: String) {
           }
           title
           body
+          category {
+            id
+          }
         }
       }
       pageInfo {

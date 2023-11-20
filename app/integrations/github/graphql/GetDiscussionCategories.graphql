@@ -1,0 +1,15 @@
+query GetDiscussionCategories($user: String!, $repo: String!) {
+  repository(owner: $user, name: $repo) {
+    discussionCategories(first: 10) {
+      nodes {
+        id
+        name
+        description
+        isAnswerable
+        repository {
+          id
+        }
+      }
+    }
+  }
+}

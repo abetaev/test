@@ -13,6 +13,7 @@
     "@graphql-codegen/typed-document-node": "^5.0.1",
     "@graphql-codegen/typescript": "^4.0.1",
     "@graphql-codegen/typescript-operations": "^4.0.1",
+    "@types/lodash": "^4.14.201",
     "bun-types": "latest",
     "concurrently": "^8.2.2",
     "vite": "^4.5.0",
@@ -24,6 +25,7 @@
   },
   "dependencies": {
     "graphql-request": "^6.1.0",
+    "lodash": "^4.17.21",
     "solid-js": "^1.8.5"
   }
 }

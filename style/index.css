@@ -3,29 +3,29 @@ body {
   background-color: var(--background-color);
 }
 
+
 a {
   color: var(--color-interactive)
 }
 
-article {
-  margin: 1em;
-  padding: 0.5em;
-  box-shadow: 4px 4px 0.5em var(--color);
-}
-
 @media (prefers-color-scheme: light) {
   :root {
-    --color: #333;
-    --color-interactive: #272;
-    --background-color: #BBB;
+    --color: #111213;
+    --color-interactive: #C09600;
+    --paper-color: #DDDEDF;
+    --background-shadow-color: #878889;
+    --background-color: #BABBBC;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color: #BBB;
-    --color-interactive: #4D6;
-    --background-color: #333;
+    --color: #BABBBC;
+    --info-color: #A0CFB8;
+    --warn-color: #CFB8A0;
+    --color-interactive: #FCD000;
+    --paper-color: #323334;
+    --background-shadow-color: #010203;
+    --background-color: #212223;
   }
 }
-

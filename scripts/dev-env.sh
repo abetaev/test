@@ -17,7 +17,6 @@ cd "$(dirname $0)/.."
 
 down() {
   $compose down
-  echo
 }
 
 trap down INT

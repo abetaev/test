@@ -10,6 +10,9 @@ query getDiscussions($user: String!, $repo: String!, $iterator: String) {
             url
           }
           title
+          createdAt
+          lastEditedAt
+          updatedAt
           body
           category {
             id,

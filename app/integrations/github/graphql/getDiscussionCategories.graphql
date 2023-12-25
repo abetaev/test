@@ -1,4 +1,4 @@
-query GetDiscussionCategories($user: String!, $repo: String!) {
+query getDiscussionCategories($user: String!, $repo: String!) {
   repository(owner: $user, name: $repo) {
     discussionCategories(first: 10) {
       nodes {

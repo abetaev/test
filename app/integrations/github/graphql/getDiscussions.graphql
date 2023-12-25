@@ -1,4 +1,4 @@
-query GetDiscussions($user: String!, $repo: String!, $iterator: String) {
+query getDiscussions($user: String!, $repo: String!, $iterator: String) {
   repository(owner: $user, name: $repo) {
     discussions(first: 10, after: $iterator) {
       edges {
@@ -12,7 +12,8 @@ query GetDiscussions($user: String!, $repo: String!, $iterator: String) {
           title
           body
           category {
-            id
+            id,
+            name
           }
         }
       }

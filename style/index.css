@@ -1,0 +1,31 @@
+body {
+  color: var(--color);
+  background-color: var(--background-color);
+}
+
+a {
+  color: var(--color-interactive)
+}
+
+article {
+  margin: 1em;
+  padding: 0.5em;
+  box-shadow: 4px 4px 0.5em var(--color);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color: #333;
+    --color-interactive: #272;
+    --background-color: #BBB;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color: #BBB;
+    --color-interactive: #4D6;
+    --background-color: #333;
+  }
+}
+

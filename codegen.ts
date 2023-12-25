@@ -5,11 +5,12 @@ const config: CodegenConfig = {
   documents: ['app/integrations/github/graphql/*.graphql'],
   ignoreNoDocuments: true,
   generates: {
-    './app/integrations/graphql.ts': {
+    './app/integrations/github/graphql/sdk.ts': {
       config: {
+        nonOptionalTypename: true,
         useTypeImports: true,
       },
-      plugins: ["typescript", "typescript-operations", "typed-document-node"]
+      plugins: ["typescript", "typescript-graphql-request", "typescript-operations"]
     },
   },
 }

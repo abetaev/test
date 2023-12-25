@@ -1,4 +1,4 @@
-import { JSXElement, Show, createEffect, createSignal } from "solid-js"
+import { JSXElement, Show, createSignal } from "solid-js"
 import env from "~/integrations/env"
 
 const [getToken, setToken] = createSignal("")
@@ -14,7 +14,7 @@ const Auth = () => {
   const searchParams = new URLSearchParams(window.location.search);
   if (searchParams.get("code")) {
     const code = searchParams.get("code");
-    createEffect(async () => {
+    (async () => {
       const response = await fetch(`http://localhost:4320/oauth?code=${code}`, {
         method: "POST"
       })
@@ -25,7 +25,7 @@ const Auth = () => {
       if (!(accessToken || tokenType))
         return
       setToken(`${params.get("token_type")} ${params.get("access_token")}`)
-    })
+    })()
   }
   return (
     <a href={AUTH_URL}>authenticate with github</a>

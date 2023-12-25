@@ -1,4 +1,4 @@
-mutation NewDiscussion($repositoryId: ID!, $categoryId: ID!, $title: String!, $body: String!) {
+mutation newDiscussion($repositoryId: ID!, $categoryId: ID!, $title: String!, $body: String!) {
   createDiscussion(input: {
     repositoryId: $repositoryId
     categoryId: $categoryId

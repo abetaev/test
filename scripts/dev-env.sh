@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-if which docker && docker compose 2>&1 > /dev/null; then
+if which docker && docker compose config 2>&1 > /dev/null; then
   # use docker compose plugin
   compose="docker compose"
 elif which podman-compose; then

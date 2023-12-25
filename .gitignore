@@ -1,5 +1,5 @@
 /node_modules/
 /.i
 
-/app/integrations/github/graphql/schema.json
-/app/integrations/graphql.ts
+/app/integrations/github/graphql/*
+!/app/integrations/github/graphql/*.graphql

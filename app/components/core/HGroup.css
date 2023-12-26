@@ -1,0 +1,22 @@
+div.hgroup {
+  display: flex;
+  flex-direction: row;
+}
+
+div.hgroup> * {
+  flex-grow: 1;
+}
+
+div.hgroup> :not(:first-child, :last-child) {
+  border-radius: 0px;
+}
+
+div.hgroup> :first-child {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+div.hgroup> :last-child {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}

@@ -1,0 +1,52 @@
+div.vgroup {
+  display: flex;
+  flex-direction: column;
+}
+
+div.vgroup>* {
+  flex-grow: 1;
+}
+
+div.vgroup> :not(:first-child, :last-child) {
+  border-radius: 0px;
+}
+
+div.vgroup> :first-child {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+div.vgroup> :last-child {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+div.vgroup>div.hgroup:first-child> :first-child {
+  border-bottom-left-radius: 0px;
+}
+
+div.vgroup>div.hgroup:first-child> :last-child {
+  border-bottom-right-radius: 0px;
+}
+
+div.vgroup>div.hgroup:last-child> :first-child {
+  border-top-left-radius: 0px;
+}
+
+div.vgroup>div.hgroup:last-child> :last-child {
+  border-top-right-radius: 0px;
+}
+
+div.vgroup>div.hgroup:last-child> :last-child {
+  border-top-right-radius: 0px;
+}
+
+div.vgroup>div.hgroup:not(:first-child, :last-child)> :first-child {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+div.vgroup>div.hgroup:not(:first-child, :last-child)> :last-child {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}

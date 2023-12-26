@@ -3,10 +3,11 @@ import './index.css'
 import Header from "./Header";
 import { Show } from "solid-js";
 import Main from "./Main";
+import Article from "~/components/core/Article";
 
 type Props = { data?: Discussion | null }
 export default (props: Props) => (
-  <article>
+  <Article>
     <Header subtitle={
       <>
         created: {props.data?.createdAt}
@@ -18,5 +19,5 @@ export default (props: Props) => (
       {props.data?.title}
     </Header>
     <Main>{props.data?.body}</Main>
-  </article>
+  </Article>
 )

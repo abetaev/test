@@ -1,18 +1,13 @@
-import ArticleList from '~/components/ArticleList';
 import Github from '~/integrations/github';
-import { Async } from '~/utils/Async';
+import Loading from './Loading';
+import Login from './Login';
+import Main from './Main';
 
-export default () => {
-  return (
-    <Github>
-      {client => <>
-        <Async>
-          {async () => {
-            const discussions = await client.getDiscussions({ repo: "test", user: "abetaev" })
-            return () => <ArticleList discussions={discussions}/>
-          }}
-        </Async>
-      </>}
-    </Github>
-  )
-}
+export default () => (
+  <Github
+    auth={login => <Login {...{ login }} />}
+    loading={<Loading/>}
+  >
+    {client => <Main {...{ client }} />}
+  </Github>
+)

@@ -1,5 +1,5 @@
 import { For } from "solid-js";
-import Article from "./Article";
+import Article from "./Discussion";
 import { GetDiscussionsQuery } from "~/integrations/github/graphql/sdk";
 
 type Props = { discussions?: GetDiscussionsQuery | null }

@@ -5,12 +5,12 @@ const url = "https://api.github.com/graphql"
 
 export type SDK = ReturnType<typeof getSdk>
 
-type Props = { user: string, repo: string, token: string }
+type Props = { user: string, repo: string, token?: string }
 export default (props: Props): SDK => {
   const requestClient = new GraphQLClient(url, {
-    headers: {
+    headers: props.token ? {
       "Authorization": props.token
-    }
+    } : {}
   })
   const sdk = getSdk(requestClient)
   return sdk

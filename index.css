@@ -1,12 +1,8 @@
-body {
+:root {
   color: var(--color);
   background-color: var(--background-color);
 }
 
-
-a {
-  color: var(--color-interactive)
-}
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -21,9 +17,10 @@ a {
 @media (prefers-color-scheme: dark) {
   :root {
     --color: #BABBBC;
+    --color-interactive: #FCD000;
+    --color-active: #0DFC00;
     --info-color: #A0CFB8;
     --warn-color: #CFB8A0;
-    --color-interactive: #FCD000;
     --paper-color: #323334;
     --background-shadow-color: #010203;
     --background-color: #212223;

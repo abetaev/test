@@ -7,7 +7,8 @@
 @media (prefers-color-scheme: light) {
   :root {
     --color: #111213;
-    --color-interactive: #C09600;
+    --color-interactive: #008069;
+    --color-active: #C99800;
     --paper-color: #DDDEDF;
     --background-shadow-color: #878889;
     --background-color: #BABBBC;

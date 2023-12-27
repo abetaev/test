@@ -5,7 +5,7 @@
     "deploy": "echo 'not implemented' 1>&2 && exit 1",
     "build": "bun run init && vite build",
     "cleanup": "git clean -fdx",
-    "init": "[ -f .i ] || (bun i && scripts/download-github-graphql.schema.sh && touch .i)"
+    "init": "[ -f .i ] || (bun i && scripts/download-github-graphql.schema.sh && graphql-codegen && touch .i)"
   },
   "type": "module",
   "devDependencies": {
@@ -17,13 +17,15 @@
     "bun-types": "latest",
     "concurrently": "^8.2.2",
     "vite": "^4.5.0",
-    "vite-plugin-solid": "^2.7.2"
+    "vite-plugin-solid": "^2.7.2",
+    "vite-plugin-comlink": "^3.0.5"
   },
   "peerDependencies": {
     "typescript": "^5.0.0",
     "@parcel/watcher": "^2.3.0"
   },
   "dependencies": {
+    "comlink": "^4.4.1",
     "graphql-request": "^6.1.0",
     "lodash": "^4.17.21",
     "solid-js": "^1.8.5"

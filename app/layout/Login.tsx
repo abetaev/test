@@ -5,6 +5,8 @@ import HGroup from "~/components/core/HGroup";
 import Input from "~/components/core/Input";
 import VGroup from "~/components/core/VGroup";
 
+import runtime from '~/services'
+
 type Props = { login: () => unknown }
 export default (props: Props) => (
   <Dialog>
@@ -15,7 +17,11 @@ export default (props: Props) => (
         </HGroup>
         <HGroup>
           <Button onClick={props.login}>login</Button>
-          <Button onClick={alert}>info</Button>
+          <Button onClick={async () => {
+            console.log(1)
+            await runtime.account.create("user", "password")
+            console.log(2)
+          }}>info</Button>
         </HGroup>
       </VGroup>
     </Article>

@@ -14,20 +14,23 @@
     "@graphql-codegen/typescript-graphql-request": "^6.1.0",
     "@graphql-codegen/typescript-operations": "^4.0.1",
     "@types/lodash": "^4.14.201",
+    "@types/uuid": "^9.0.7",
     "bun-types": "latest",
     "concurrently": "^8.2.2",
     "vite": "^4.5.0",
-    "vite-plugin-solid": "^2.7.2",
-    "vite-plugin-comlink": "^3.0.5"
+    "vite-plugin-solid": "^2.7.2"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0",
-    "@parcel/watcher": "^2.3.0"
+    "@parcel/watcher": "^2.3.0",
+    "typescript": "^5.0.0"
   },
   "dependencies": {
+    "buffer": "^6.0.3",
     "comlink": "^4.4.1",
     "graphql-request": "^6.1.0",
+    "idb-keyval": "^6.2.1",
     "lodash": "^4.17.21",
-    "solid-js": "^1.8.5"
+    "solid-js": "^1.8.5",
+    "uuid": "^9.0.1"
   }
 }

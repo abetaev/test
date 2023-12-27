@@ -1,2 +1,6 @@
-// @ts-expect-error vite hack import.meta.env
-export default (key: string) => import.meta.env[`APP_${key}`]
+export default (key: string) => {
+  const value = import.meta.env[`APP_${key}`]
+  if (value === undefined)
+    throw new Error(`APP_${key} is not set`)
+  return value
+}

@@ -1,11 +1,11 @@
 import Github from '~/integrations/github';
 import Loading from './Loading';
-import Login from './Login';
+import Roster from '../components/account/Roster';
 import Main from './Main';
 
 export default () => (
   <Github
-    auth={login => <Login {...{ login }} />}
+    auth={login => <Roster {...{ login }} />}
     loading={<Loading/>}
   >
     {client => <Main {...{ client }} />}

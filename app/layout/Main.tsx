@@ -1,5 +1,5 @@
 import { Async } from "~/utils/Async"
-import DiscussionList from "~/components/domain/DiscussionList"
+import DiscussionList from "~/components/github/DiscussionList"
 import { SDK } from "~/integrations/github/client"
 import env from "~/integrations/env"
 

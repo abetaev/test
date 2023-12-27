@@ -1,9 +1,9 @@
-import { Discussion } from "~/integrations/github/graphql/sdk";
-import './index.css'
-import Header from "./Header";
 import { Show } from "solid-js";
-import Main from "./Main";
 import Article from "~/components/core/Article";
+import Header from "~/components/core/Header";
+import { Discussion } from "~/integrations/github/graphql/sdk";
+import Main from "./Main";
+import './index.css';
 
 type Props = { data?: Discussion | null }
 export default (props: Props) => (

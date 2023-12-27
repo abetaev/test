@@ -3,12 +3,13 @@
   background-color: var(--background-color);
 }
 
-
 @media (prefers-color-scheme: light) {
   :root {
     --color: #111213;
-    --color-interactive: #008069;
+    --color-interactive: #661188;
     --color-active: #C99800;
+    --info-color: #09683a;
+    --warn-color: #d11d0c;
     --paper-color: #DDDEDF;
     --background-shadow-color: #878889;
     --background-color: #BABBBC;
@@ -21,9 +22,14 @@
     --color-interactive: #FCD000;
     --color-active: #0DFC00;
     --info-color: #A0CFB8;
-    --warn-color: #CFB8A0;
+    --warn-color: #FF6600;
     --paper-color: #323334;
     --background-shadow-color: #010203;
     --background-color: #212223;
   }
+}
+
+.warning {
+  color: var(--warn-color);
+  border-color: var(--warn-color);
 }

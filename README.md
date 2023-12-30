@@ -1,10 +1,11 @@
-# a.betaev.pub site
+# para*site*
 
 ## roadmap
 
+### functional
+
 - [x] authenticate agains github app
 - [x] thin integration layer github-graphql -> UI renderer
-- [ ] minimal design
 - [ ] articles ("announcement" categories)
   - [ ] rendering markdown
     - [ ] markdown tables to graphics
@@ -18,6 +19,30 @@
   - [ ] managing config through git
 - [ ] deployment
   - [ ] pre-rendering on deployment (to avoid necessity of authentication)
+- [ ] rtc connectivity
+  - [ ] invite links
+  - [ ] roster
+
+### technical
+
+- [ ] service infrastructure
+  - [ ] worker services
+    - [ ] account
+    - [ ] session
+- [ ] design system
+  - [ ] layouts
+    - [ ] singular
+    - [ ] plural
+  - [ ] components
+    - [ ] input
+      - [ ] text
+      - [ ] date
+      - [ ] action
+    - [ ] output
+      - [ ] text
+      - [ ] date
+      - [ ] header
+      - [ ] markdown
 
 
 ## development
@@ -25,14 +50,11 @@
 ### requirements
 
 * bun >=1.0
-* container runtime, one of:
-  - docker compose plugin >=2.22 - **supports hot reload**
-  - podman compose
+* docker compose plugin >=2.22
 
+### environment
 
 ```bash
 # develop
 bun run dev
-# deploy
-bun run deploy
 ```

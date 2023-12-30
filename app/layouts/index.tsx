@@ -1,6 +1,6 @@
 import Github from '~/integrations/github';
 import Loading from './Loading';
-import Roster from '../components/account/Roster';
+import Roster from '../pages/account/Roster';
 import Main from './Main';
 
 export default () => (

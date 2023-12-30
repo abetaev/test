@@ -1,0 +1,13 @@
+div.singular.layout {
+
+  display: flex;
+  direction: column;
+  justify-content: space-around;
+  align-content: space-around;
+  height: 100%;
+
+}
+
+div.singular.layout > * {
+  height: min-content;
+}

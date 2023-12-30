@@ -19,7 +19,21 @@ const service = {
   },
   close(session: Session) {
     delete sessions[session]
+  },
+  encrypt(session: Session, data: Buffer) {
+    const identity = sessions[session]
+    if (!identity) throw new Error(`session ${session} not found`)
+    return crypto.subtle.encrypt({name: "RSA-OAEP"}, identity.encryption.publicKey, data)
+  },
+  decrypt(session: Session, data: Buffer) {
+    return crypto.subtle.decrypt({name: "RSA-OAEP"}, identity(session).encryption.privateKey, data)
   }
+}
+
+function identity(session: Session) {
+  const identity = sessions[session]
+  if (!identity) throw new Error(`session ${session} not found`)
+  return identity
 }
 
 // @ts-expect-error how to tell ts that it's a shared worker?

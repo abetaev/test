@@ -5,6 +5,7 @@ import HGroup from "~/components/core/HGroup";
 import Header from "~/components/core/Header";
 import Input from "~/components/core/Input";
 import Home from "~/components/home";
+import Singular from "~/layouts/Singular";
 import runtime from "~/services";
 
 type Props = { username: string }
@@ -24,7 +25,7 @@ export default (props: Props) => {
     onKeyDown={({key}) => key === "Enter" && login()}
   /> as HTMLInputElement
   return (
-    <Dialog>
+    <Singular>
       <Article>
         <Header>{props.username}</Header>
         <HGroup>
@@ -33,6 +34,6 @@ export default (props: Props) => {
           <Button onClick={login}>login</Button>
         </HGroup>
       </Article>
-    </Dialog>
+    </Singular>
   )
 }

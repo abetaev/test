@@ -1,21 +1,21 @@
 import { For, createResource } from "solid-js";
 import Article from "~/components/core/Article";
 import Button from "~/components/core/Button";
-import Dialog from "~/components/core/Dialog";
 import HGroup from "~/components/core/HGroup";
 import Input from "~/components/core/Input";
 import VGroup from "~/components/core/VGroup";
 
 import runtime from '~/services'
-import Login from "./Login";
+import Login from "../Login";
 import Delete from "./Delete";
+import Singular from "~/layouts/Singular";
 
 const [list, { refetch }] = createResource(
   runtime.account.list,
 )
 
 export default () => (
-  <Dialog>
+  <Singular>
     <Article>
       <VGroup>
         <For each={list.latest}>
@@ -30,7 +30,7 @@ export default () => (
         </HGroup>
       </VGroup>
     </Article>
-  </Dialog>
+  </Singular>
 )
 
 type AccountControlsProps = { username: string }
@@ -56,7 +56,7 @@ const CreateAccount = () => {
       <Button onClick={async () => {
         await runtime.account.create(username.value, password.value)
         refetch()
-      }}>create account</Button>
+      }}>create</Button>
     </>
   )
 }

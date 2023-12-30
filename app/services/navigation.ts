@@ -1,4 +1,4 @@
-import { Component, createSignal } from "solid-js"
+import { Component, JSXElement, createSignal } from "solid-js"
 
 type View = {
   component: Component
@@ -15,7 +15,7 @@ const service = {
     head.resolve()
     setStack(rest)
   },
-  view: () => getStack()[0].component
+  view: (): JSXElement => getStack()[0].component as unknown as JSXElement
 }
 
 export default service

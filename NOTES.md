@@ -1,3 +1,35 @@
+# ui
+
+## top-level
+
+page flow:
+```
+flow
+
+                                         .----------(back)----------.
+      .---[logout]                      /                           /
+     /                                  |     ,-------------->[view]--->[&logout]
+     |    .->(authenticated)---.        v    /                      \
+     v   /                      >--->[browse]--->[&logout]           *-*-*->[config view]
+  [login]----->(anonymous)-----'             \
+     ^   \                                    '-->[config browse]
+     |    '->(create account)-.
+     \                        /
+      '----------------------'
+
+```
+
+model:
+```
+structure
+
+[browse]e--->[article list]
+                   |
+                   v
+[view]o------->[article]
+
+```
+
 # roadmap
 
 ## milestone 1
@@ -7,8 +39,8 @@
   - store config
 
 - config
-  - github
-    - authentication:
+  - github [browse]
+    - authentication
       - url
       - clientId
     - username
@@ -142,3 +174,12 @@ parse text and build model in d3?
 ## scalable cloud-based url shortner with adaptive pricing system
 
 for money :)
+
+## sharable content
+
+whatever content is acquired by a user it can be shared with any user the acquisitor of content
+is able to agree upon transfer of that content. i.e. user who actuired some content has complete
+freedom of sharing that content with whomever they decide to share it.
+
+- webrtc to share with peers
+- use dht to share with all?

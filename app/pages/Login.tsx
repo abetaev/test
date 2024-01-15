@@ -1,6 +1,5 @@
 import Article from "~/components/core/Article";
 import Button from "~/components/core/Button";
-import Dialog from "~/components/core/Dialog";
 import HGroup from "~/components/core/HGroup";
 import Header from "~/components/core/Header";
 import Input from "~/components/core/Input";
@@ -16,7 +15,9 @@ export default (props: Props) => {
       await runtime.navigation.show(() => <Home session={session} />)
       runtime.navigation.back();
     } catch (cause) {
-      throw new Error("unable to log in", { cause })
+      const message = "wrong password"
+      alert(message)
+      throw new Error(message, { cause })
     }
   }
   const password = <Input

@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-const GITHUB_OAUTH_ACCESS_TOKEN_URL = "https://github.com/login/oauth/access_token"
+const githubOAuthAccessTokenURL = "https://github.com/login/oauth/access_token"
 
 // given authorization code request access token
 func Authenticate(w http.ResponseWriter, r *http.Request) {
@@ -44,7 +44,7 @@ func Authenticate(w http.ResponseWriter, r *http.Request) {
 		"code":          code,
 	}
 	resp, err := http.Post(
-		GITHUB_OAUTH_ACCESS_TOKEN_URL,
+		githubOAuthAccessTokenURL,
 		"application/x-www-form-urlencoded",
 		strings.NewReader(urlParams.Encode()),
 	)
